@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ProgressBar, ProgressStep } from '../ui/ProgressBar';
 import { Button } from '../ui/Button';
 import { useProjectStore } from '../../stores/useProjectStore';
+import { useProjectData } from '../../hooks/useProjectData';
 import { QuestionnaireData as QType } from '../../types/project';
 
 const steps: ProgressStep[] = [
@@ -20,12 +21,38 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({ onGenerate }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const questionnaire = useProjectStore(state => state.questionnaire);
   const setField = useProjectStore(state => state.setField);
+  const setQuestionnaire = useProjectStore(state => state.setQuestionnaire);
   const addStakeholder = useProjectStore(state => state.addStakeholder);
   const updateStakeholder = useProjectStore(state => state.updateStakeholder);
   const removeStakeholder = useProjectStore(state => state.removeStakeholder);
 
+  const { projectTypes, timelineOptions, budgetRanges, stakeholderTypes, applyTemplate } =
+    useProjectData();
+
   const [newStakeholderName, setNewStakeholderName] = useState('');
   const [newStakeholderRole, setNewStakeholderRole] = useState('');
+
+  // Apply template when project type changes
+  useEffect(() => {
+    if (questionnaire.projectType) {
+      const template = applyTemplate(questionnaire.projectType);
+      if (template && !questionnaire.projectDescription) {
+        setQuestionnaire({
+          projectDescription: template.projectDescription,
+          objectives: template.objectives,
+          deliverables: template.deliverables,
+          successCriteria: template.successCriteria,
+          potentialRisks: template.potentialRisks,
+          mitigationStrategies: template.mitigationStrategies,
+        });
+      }
+    }
+  }, [
+    questionnaire.projectType,
+    applyTemplate,
+    setQuestionnaire,
+    questionnaire.projectDescription,
+  ]);
 
   const canNext = () => {
     // Basic validation per step
@@ -81,11 +108,18 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({ onGenerate }) => {
               </div>
               <div>
                 <label className="block text-sm font-medium">Project Type</label>
-                <input
+                <select
                   className="form-control mt-1 w-full p-2 border rounded"
                   value={questionnaire.projectType}
                   onChange={e => setField('projectType', e.target.value)}
-                />
+                >
+                  <option value="">Select project type...</option>
+                  {projectTypes.map(type => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium">Project Description *</label>
@@ -98,11 +132,18 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({ onGenerate }) => {
               </div>
               <div>
                 <label className="block text-sm font-medium">Expected Timeline</label>
-                <input
+                <select
                   className="form-control mt-1 w-full p-2 border rounded"
                   value={questionnaire.timeline}
                   onChange={e => setField('timeline', e.target.value)}
-                />
+                >
+                  <option value="">Select timeline...</option>
+                  {timelineOptions.map(option => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </section>
@@ -149,11 +190,18 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({ onGenerate }) => {
               </div>
               <div>
                 <label className="block text-sm">Role</label>
-                <input
+                <select
                   className="p-2 border rounded w-full"
                   value={newStakeholderRole}
                   onChange={e => setNewStakeholderRole(e.target.value)}
-                />
+                >
+                  <option value="">Select role...</option>
+                  {stakeholderTypes.map(type => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
                 <Button variant="outline" onClick={handleAddStakeholder}>
@@ -236,11 +284,18 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({ onGenerate }) => {
               </div>
               <div>
                 <label className="block text-sm font-medium">Budget Range *</label>
-                <input
+                <select
                   className="form-control mt-1 w-full p-2 border rounded"
                   value={questionnaire.budget}
                   onChange={e => setField('budget', e.target.value)}
-                />
+                >
+                  <option value="">Select budget range...</option>
+                  {budgetRanges.map(range => (
+                    <option key={range} value={range}>
+                      {range}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium">Resource Constraints</label>

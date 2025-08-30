@@ -74,12 +74,15 @@ Please format your response in clear, professional sections that could be used i
 // Legacy function for compatibility - now generates LLM prompt instead
 export function analyzeProject(data: QuestionnaireData) {
   const llmPrompt = generateLLMPrompt(data);
-  
+
   return {
     projectCharter: llmPrompt,
-    riskAssessment: 'This prompt is ready for LLM analysis. Copy the prompt from the Project Charter section to send to ChatGPT or your preferred AI assistant.',
-    timelineOverview: 'Timeline analysis will be provided by the LLM based on the generated prompt.',
-    stakeholderAnalysis: 'Stakeholder analysis will be provided by the LLM based on the generated prompt.',
-    llmPrompt: llmPrompt
+    riskAssessment:
+      'This prompt is ready for LLM analysis. Copy the prompt from the Project Charter section to send to ChatGPT or your preferred AI assistant.',
+    timelineOverview:
+      'Timeline analysis will be provided by the LLM based on the generated prompt.',
+    stakeholderAnalysis:
+      'Stakeholder analysis will be provided by the LLM based on the generated prompt.',
+    llmPrompt: llmPrompt,
   };
 }

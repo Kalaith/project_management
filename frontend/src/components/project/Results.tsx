@@ -22,7 +22,7 @@ export const Results: React.FC<ResultsProps> = ({
   llmPrompt,
 }) => {
   const [copied, setCopied] = useState(false);
-  
+
   const handleCopyPrompt = async () => {
     if (llmPrompt || projectCharter) {
       try {
@@ -51,22 +51,24 @@ export const Results: React.FC<ResultsProps> = ({
               </Button>
             </div>
           </div>
-          
+
           <div className="results__content">
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-              <h3 className="text-lg font-semibold text-blue-800 mb-3">
-                📝 Ready for AI Analysis
-              </h3>
+              <h3 className="text-lg font-semibold text-blue-800 mb-3">📝 Ready for AI Analysis</h3>
               <p className="text-blue-700 mb-4">
-                Your project questionnaire has been converted into a structured prompt. 
-                Copy this prompt and paste it into ChatGPT, Claude, or your preferred AI assistant for comprehensive project analysis.
+                Your project questionnaire has been converted into a structured prompt. Copy this
+                prompt and paste it into ChatGPT, Claude, or your preferred AI assistant for
+                comprehensive project analysis.
               </p>
-              
+
               <div className="flex gap-2 mb-4">
                 <Button onClick={handleCopyPrompt} className="bg-blue-600 hover:bg-blue-700">
                   {copied ? '✅ Copied!' : '📋 Copy Prompt'}
                 </Button>
-                <Button variant="outline" onClick={() => window.open('https://chat.openai.com', '_blank')}>
+                <Button
+                  variant="outline"
+                  onClick={() => window.open('https://chat.openai.com', '_blank')}
+                >
                   🚀 Open ChatGPT
                 </Button>
               </div>
@@ -90,7 +92,8 @@ export const Results: React.FC<ResultsProps> = ({
               <div className="p-4 bg-green-50 rounded">
                 <h4 className="font-semibold text-green-800">✅ What You'll Get</h4>
                 <p className="text-sm text-green-700 mt-2">
-                  Professional project charter, risk analysis, timeline, and stakeholder recommendations
+                  Professional project charter, risk analysis, timeline, and stakeholder
+                  recommendations
                 </p>
               </div>
               <div className="p-4 bg-yellow-50 rounded">

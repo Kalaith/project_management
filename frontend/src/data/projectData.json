@@ -1,7 +1,7 @@
 {
   "projectTypes": [
     "Software Development",
-    "Marketing Campaign", 
+    "Marketing Campaign",
     "Product Launch",
     "Process Improvement",
     "Event Planning",
@@ -11,7 +11,7 @@
   ],
   "timelineOptions": [
     "1-2 weeks",
-    "1 month", 
+    "1 month",
     "2-3 months",
     "3-6 months",
     "6-12 months",
@@ -20,7 +20,7 @@
   "budgetRanges": [
     "Under $10K",
     "$10K - $50K",
-    "$50K - $100K", 
+    "$50K - $100K",
     "$100K - $500K",
     "$500K - $1M",
     "Over $1M"
@@ -36,7 +36,7 @@
   ],
   "riskCategories": [
     "Technical",
-    "Financial", 
+    "Financial",
     "Timeline",
     "Resource",
     "Market",
@@ -70,33 +70,33 @@
     }
   },
   "stakeholderInfluenceMap": {
-    "Project Sponsor": { 
-      "level": "High", 
-      "strategy": "Manage closely - regular updates and involvement in key decisions" 
+    "Project Sponsor": {
+      "level": "High",
+      "strategy": "Manage closely - regular updates and involvement in key decisions"
     },
-    "End Users": { 
-      "level": "High", 
-      "strategy": "Keep satisfied - regular feedback sessions and user testing" 
+    "End Users": {
+      "level": "High",
+      "strategy": "Keep satisfied - regular feedback sessions and user testing"
     },
-    "Development Team": { 
-      "level": "Medium", 
-      "strategy": "Keep informed - daily standups and clear requirements" 
+    "Development Team": {
+      "level": "Medium",
+      "strategy": "Keep informed - daily standups and clear requirements"
     },
-    "Management": { 
-      "level": "High", 
-      "strategy": "Manage closely - executive briefings and milestone reviews" 
+    "Management": {
+      "level": "High",
+      "strategy": "Manage closely - executive briefings and milestone reviews"
     },
-    "External Vendors": { 
-      "level": "Medium", 
-      "strategy": "Monitor - clear contracts and regular check-ins" 
+    "External Vendors": {
+      "level": "Medium",
+      "strategy": "Monitor - clear contracts and regular check-ins"
     },
-    "Customers": { 
-      "level": "High", 
-      "strategy": "Keep satisfied - regular communication and feedback loops" 
+    "Customers": {
+      "level": "High",
+      "strategy": "Keep satisfied - regular communication and feedback loops"
     },
-    "Regulatory Bodies": { 
-      "level": "Low", 
-      "strategy": "Monitor - ensure compliance and periodic updates" 
+    "Regulatory Bodies": {
+      "level": "Low",
+      "strategy": "Monitor - ensure compliance and periodic updates"
     }
   },
   "defaultRisks": [
@@ -104,7 +104,7 @@
       "risk": "Timeline Delays",
       "category": "Schedule",
       "probability": "Medium",
-      "impact": "High", 
+      "impact": "High",
       "mitigation": "Implement weekly progress reviews and buffer time in critical path",
       "level": "high"
     },

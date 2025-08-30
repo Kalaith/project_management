@@ -2,8 +2,6 @@
 
 A comprehensive, AI-powered project management tool that helps you create detailed project plans through guided questionnaires and intelligent analysis. This tool generates professional project documentation including charters, risk assessments, timelines, and stakeholder analysis.
 
-![Project Manager Screenshot](generated_image.png)
-
 ## 🚀 Features
 
 ### Core Functionality
@@ -55,207 +53,117 @@ project_management/
 ├── style.css           # Styling and responsive design
 ├── test.html           # Quick functionality test
 ├── README.md           # This documentation
-├── generated_image.png # Screenshot/demo image
-└── php-integration-guide.md # Backend integration guide
+# Project Management — Frontend
+
+This repository contains the frontend for the Project Management app: a Vite + React + TypeScript single-page application used to build and preview project questionnaires, processing, and results export features.
+
+## What this workspace contains
+
+- Framework: Vite + React + TypeScript
+- Styling: Tailwind CSS
+- State: Zustand
+- Animations: Framer Motion
+- Charts: Chart.js
+- Testing: Vitest + Testing Library
+- Linting / Formatting: ESLint + Prettier
+
+Source is under `frontend/src`. Key folders:
+
+- `src/components/` — UI components (layout, project steps, shared UI)
+- `src/hooks/` — custom hooks (for example `useProjectData.ts`)
+- `src/stores/` — global stores (for example `useProjectStore.ts`)
+- `src/data/` — static sample data (`projectData.json`)
+- `src/utils/` — utilities (`exporter.ts`, `reportGenerator.ts`, `cn.ts`)
+- `src/styles/` — Tailwind / global CSS
+- `src/pages/` — route pages (if used)
+
+Example components: `components/project/Landing.tsx`, `Questionnaire.tsx`, `Processing.tsx`, `Results.tsx` and layout components under `components/layout/`.
+
+## Quickstart (frontend)
+
+Open a terminal in `frontend` and install dependencies, then run the dev server.
+
+```powershell
+cd frontend
+npm install
+npm run dev
 ```
 
-## 📋 How to Use
+Then open the URL shown by Vite (usually http://localhost:5173).
 
-### Step 1: Project Basics
-- Enter your project name and description
-- Select project type (templates available for common types)
-- Choose expected timeline and other basic details
+Build for production:
 
-### Step 2: Stakeholders
-- Add key project stakeholders
-- Define their roles and responsibilities
-- Specify communication preferences
-
-### Step 3: Scope & Objectives
-- Define project objectives and goals
-- List key deliverables
-- Set success criteria and metrics
-
-### Step 4: Resources & Budget
-- Specify team size and composition
-- Set budget range and constraints
-- Identify resource limitations
-
-### Step 5: Risks & Challenges
-- Identify potential risks and issues
-- Define mitigation strategies
-- List project dependencies
-
-### Generate Results
-Click "Generate Project Plan" to create comprehensive documentation with AI analysis.
-
-## 🎯 Project Templates
-
-The tool includes pre-built templates for common project types:
-
-- **Software Development**: Technical projects with development lifecycle
-- **Marketing Campaign**: Brand awareness and lead generation projects
-- **Product Launch**: New product introduction and go-to-market strategies
-- **Process Improvement**: Operational efficiency and optimization projects
-- **Event Planning**: Conference, workshop, and event management
-- **Research Project**: Academic or business research initiatives
-- **Infrastructure Upgrade**: IT and system improvement projects
-- **Training Program**: Educational and skill development programs
-
-## ⌨️ Keyboard Shortcuts
-
-- **Ctrl + →**: Next step
-- **Ctrl + ←**: Previous step
-- **Escape**: Return to landing page
-- **Alt + P**: Previous button (when visible)
-- **Alt + N**: Next button
-- **Alt + G**: Generate project plan (final step)
-
-## 💾 Data Management
-
-### Auto-Save
-- Progress is automatically saved every 30 seconds
-- Data persists between browser sessions
-- Form data is restored when you return
-
-### Export Options
-- **JSON**: Raw data for integration with other tools
-- **PDF**: Professional report for presentations
-- **HTML**: Styled report for web viewing or printing
-- **CSV**: Spreadsheet-compatible data format
-
-### Data Privacy
-- All data is stored locally in your browser
-- No information is sent to external servers
-- Clear your browser's localStorage to remove all data
-
-## 🎨 Customization
-
-### Styling
-The application uses CSS custom properties for easy theming:
-
-```css
-:root {
-  --color-primary: #21808d;
-  --color-background: #fcfcf9;
-  --color-text: #13343b;
-  /* ... more variables */
-}
+```powershell
+cd frontend
+npm run build
 ```
 
-### Adding Project Types
-Modify the `projectTypes` array in `app.js`:
+Preview the production build locally:
 
-```javascript
-projectTypes: [
-  "Your Custom Project Type",
-  // ... existing types
-]
+```powershell
+cd frontend
+npm run preview
 ```
 
-### Custom Templates
-Add new templates to the `projectTemplates` object in `app.js`:
+Run the test suite (Vitest):
 
-```javascript
-projectTemplates: {
-  "Your Custom Type": {
-    projectDescription: "Template description...",
-    objectives: "Template objectives...",
-    // ... other fields
-  }
-}
+```powershell
+cd frontend
+npm test
 ```
 
-## 🔧 Browser Compatibility
+Lint, format and type-check:
 
-- **Recommended**: Chrome 80+, Firefox 75+, Safari 13+, Edge 80+
-- **Minimum**: Any modern browser with ES6 support
-- **Features**: Local Storage, CSS Grid, Flexbox, ES6 Classes
+```powershell
+cd frontend
+npm run lint
+npm run format
+npm run type-check
+```
 
-## 📱 Mobile Support
+The most useful npm scripts (from `frontend/package.json`):
 
-The application is fully responsive and works on:
-- Mobile phones (320px and up)
-- Tablets (768px and up)
-- Desktop computers (1024px and up)
-- Large screens (1440px and up)
+- `dev` — start Vite dev server
+- `build` — run `tsc -b` then `vite build`
+- `preview` — preview built output
+- `test` / `test:run` — run tests with Vitest
+- `lint` — run ESLint
+- `format` / `format:check` — Prettier
+- `ci` — type-check, lint and run tests (CI helper)
 
-## 🐛 Troubleshooting
+## Project overview
 
-### Common Issues
+The frontend implements a multi-step flow for creating and processing project data:
 
-**Data not saving?**
-- Check if your browser has localStorage enabled
-- Try refreshing the page
-- Clear browser cache and try again
+- Landing: entry point for starting or loading a project
+- Questionnaire: multi-step form to capture project details
+- Processing: background processing and report generation
+- Results: generated report preview and export options
 
-**Export not working?**
-- Ensure your browser allows file downloads
-- Check popup blockers for PDF export
-- Try a different export format
+Data is typically persisted in-memory or browser storage for the current session. Exports are handled by utility modules (`exporter.ts`, `reportGenerator.ts`) which support structured output (JSON/CSV/HTML/PDF depending on the implementation).
 
-**Stakeholders not adding?**
-- Ensure both name and role are filled
-- Try refreshing the page
-- Check browser console for errors
+## Development notes
 
-**Next button disabled immediately?**
-- This is normal - the button enables after you interact with form fields
-- Start filling out the required fields and the validation will update
-- Use the keyboard shortcuts (Ctrl+→) if needed
+- TypeScript project references are used (`tsconfig.json` and `tsconfig.tsbuildinfo`).
+- Keep components small and testable; add unit tests in `src/components` or `src/utils` alongside code.
+- Use `vitest` + `@testing-library/react` for component tests. Example tests live next to components (e.g. `Button.test.tsx`).
 
-**JavaScript errors on load?**
-- Open `test.html` in your browser to run diagnostics
-- Check that all files are in the correct directory
-- Ensure your browser supports modern JavaScript (ES6+)
+## Troubleshooting
 
-### Browser Console
-Open Developer Tools (F12) and check the Console tab for any error messages.
+- If the dev server won't start, ensure Node.js (recommended 18+) and npm are installed and that `frontend/node_modules` exists (`npm install`).
+- Type errors: run `npm run type-check` to see TypeScript diagnostics.
+- Linting: run `npm run lint` and fix reported issues or adjust ESLint configuration in `frontend/eslint.config.js`.
 
-### Quick Test
-Open `test.html` in your browser to verify the application is working correctly.
+## Contributing
 
-## 🤝 Contributing
+- Fork / branch and open a Pull Request.
+- Run existing tests and linters before submitting.
+- Update or add tests for new functionality.
 
-Contributions are welcome! Here are some ways to contribute:
+## License
 
-1. **Bug Reports**: Found an issue? Create a detailed bug report
-2. **Feature Requests**: Have an idea? Share your suggestions
-3. **Code Contributions**: Submit pull requests with improvements
-4. **Documentation**: Help improve this README or add more examples
-
-### Development Guidelines
-- Follow existing code style and patterns
-- Test changes across different browsers
-- Ensure responsive design principles
-- Add appropriate comments and documentation
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🔮 Future Enhancements
-
-Planned features for future versions:
-- [ ] Gantt chart visualization
-- [ ] Team collaboration features
-- [ ] Integration with popular project management tools
-- [ ] Advanced risk scoring algorithms
-- [ ] Custom branding and themes
-- [ ] Multi-language support
-- [ ] Cloud storage integration
-- [ ] Email sharing capabilities
-
-## 📞 Support
-
-For questions, issues, or feature requests:
-- Check the troubleshooting section above
-- Review existing issues in the repository
-- Create a new issue with detailed information
-- Include browser version and steps to reproduce
+See `LICENSE` in the repository root for licensing information (MIT).
 
 ---
 
-**Built with ❤️ for project managers, by project managers**
-
-*Last updated: June 2025*
+Last updated: 2025-08-30

@@ -5,7 +5,11 @@
       "Bash(npm run test:run:*)",
       "Bash(npm run ci:*)",
       "Bash(npm run format:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(echo $VITE_BASE_PATH)",
+      "Bash(cat:*)",
+      "Bash(echo:*)",
+      "Bash(unset VITE_BASE_PATH)"
     ],
     "deny": [],
     "ask": []

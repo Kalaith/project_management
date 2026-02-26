@@ -2,14 +2,14 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // Read base path from .env file directly to avoid system env override
   const envFile = resolve(process.cwd(), `.env.${mode}`);
-  const envContent = readFileSync(envFile, 'utf8');
+  const envContent = existsSync(envFile) ? readFileSync(envFile, 'utf8') : '';
   const match = envContent.match(/^VITE_BASE_PATH=(.+)$/m);
   const basePath = match ? match[1].trim() : undefined;
 

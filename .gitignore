@@ -27,3 +27,4 @@
 ehthumbs.db
 mcp
 Thumbs.db
+backend/.env*

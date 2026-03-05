@@ -9,6 +9,7 @@ import { ErrorBoundary } from './components/ui/ErrorBoundary';
 import { useProjectStore } from './stores/useProjectStore';
 import { analyzeProject } from './utils/reportGenerator';
 import { exportJSON } from './utils/exporter';
+import { analyzeProjectWithAI } from './api/projectAnalysis';
 
 type View = 'landing' | 'questionnaire' | 'processing' | 'results';
 
@@ -25,15 +26,20 @@ const App: React.FC = () => {
     setView('landing');
     resetStore(); // Reset the Zustand store to clear form inputs
   };
-  const handleGenerate = (data: QuestionnaireData) => {
+  const handleGenerate = async (data: QuestionnaireData) => {
     setFormData(data);
     setView('processing');
-    // Run analysis
-    setTimeout(() => {
-      const analyzed = analyzeProject(data);
+
+    try {
+      const analyzed = await analyzeProjectWithAI(data);
       setResults(analyzed);
+    } catch (error) {
+      console.error('AI analysis failed, falling back to prompt output', error);
+      const fallback = analyzeProject(data);
+      setResults(fallback);
+    } finally {
       setView('results');
-    }, 800);
+    }
   };
   const handleExport = () => {
     const payload = { meta: { exportedAt: Date.now() }, form: formData, results };

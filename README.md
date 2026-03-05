@@ -1,19 +1,23 @@
 # Project Management
 
-Frontend-first WebHatchery app for guided project planning and report generation.
+WebHatchery app for guided project planning and AI-powered report generation.
 
 ## Stack
 
-1. React + TypeScript + Vite
-2. Tailwind CSS
-3. Zustand
-4. Vitest + Testing Library
+1. React + TypeScript + Vite (frontend)
+2. PHP (backend API)
+3. Gemini API for analysis
+4. Tailwind CSS + Zustand
+5. Vitest + Testing Library
 
 ## Structure
 
 ```text
 project_management/
   .github/workflows/ci.yml
+  backend/
+    public/
+    src/
   frontend/
     src/
       api/
@@ -35,6 +39,15 @@ project_management/
 cd frontend
 npm install
 npm run dev
+```
+
+Backend API:
+
+```powershell
+cd backend
+copy .env.example .env
+# set GEMINI_API_KEY in .env
+php -S localhost:8000 public/index.php
 ```
 
 ## Quality Gates
@@ -64,5 +77,5 @@ From the app root:
 
 ## Notes
 
-1. This app is currently standardized as **frontend-only**.
-2. Vite config now safely handles missing mode env files (for example `.env.test`) so tests run reliably in CI/local.
+1. Frontend uses `VITE_API_URL` to call the backend endpoint `POST /project-analysis`.
+2. Vite config safely handles missing mode env files (for example `.env.test`) so tests run reliably in CI/local.

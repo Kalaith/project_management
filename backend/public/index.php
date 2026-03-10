@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 $autoloader = null;
 $searchPaths = [
-    __DIR__ . '/../../../vendor/autoload.php',
-    __DIR__ . '/../vendor/autoload.php',
-    __DIR__ . '/../../vendor/autoload.php',
     __DIR__ . '/../../../../vendor/autoload.php',
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/../../../vendor/autoload.php',
+    __DIR__ . '/../../vendor/autoload.php',
     __DIR__ . '/../../../../../vendor/autoload.php',
 ];
 
